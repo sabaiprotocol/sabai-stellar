@@ -4,6 +4,7 @@ Buy a fractional share of a tokenized property, sell it back, trade it peer to
 peer, collect rental income. End to end on **Stellar testnet**, five Soroban
 contracts, no backend.
 
+[![Live demo](https://img.shields.io/badge/live%20demo-sabai--stellar.vercel.app-brightgreen)](https://sabai-stellar.vercel.app)
 [![Soroban](https://img.shields.io/badge/Soroban-protocol%2027-black)](https://developers.stellar.org/docs/build/smart-contracts/overview)
 [![soroban-sdk](https://img.shields.io/badge/soroban--sdk-27.0.2-orange)](https://crates.io/crates/soroban-sdk)
 [![ci](https://github.com/sabaiprotocol/sabai-stellar/actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
@@ -35,6 +36,10 @@ yourself](#verify-it-yourself)** below is how to open them on a public explorer
 and check the rest without trusting any of this.
 
 ## Try it in three minutes
+
+**[sabai-stellar.vercel.app](https://sabai-stellar.vercel.app)** is this
+repository's `web/` deployed from `main` against the same testnet contracts, so
+there is nothing to install to look around. To run the identical thing locally:
 
 ```bash
 git clone https://github.com/sabaiprotocol/sabai-stellar.git

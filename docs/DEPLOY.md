@@ -8,6 +8,9 @@ The app has no backend. It reads the ledger over public Soroban RPC and every
 signature happens inside Freighter, so there is no server-side secret to leak
 and nothing to protect beyond the static build itself.
 
+The live deployment is **<https://sabai-stellar.vercel.app>**, built from `main`
+on every push.
+
 ## The one thing that makes this non-obvious
 
 `web/` is an npm workspace, not a standalone app, and it reaches outside its own
@@ -49,8 +52,8 @@ floor comes from the deploy tooling in `scripts/`, not from Next.js.
 
 One variable, and it is optional:
 
-```
-NEXT_PUBLIC_BASE_URL = https://<domain>          # no trailing slash
+```ini
+NEXT_PUBLIC_BASE_URL = https://sabai-stellar.vercel.app     # no trailing slash
 ```
 
 It is the `metadataBase` in [`web/src/app/layout.tsx`](../web/src/app/layout.tsx),
