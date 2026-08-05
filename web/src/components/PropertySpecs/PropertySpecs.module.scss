@@ -1,0 +1,23 @@
+.specs {
+  display: flex;
+  align-items: center;
+  gap: toRem(18);
+}
+
+.spec {
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(7);
+  color: var(--text-gray-500);
+}
+
+.icon {
+  width: toRem(20);
+  height: toRem(20);
+}
+
+.value {
+  font-size: toRem(13);
+  font-weight: 600;
+  color: var(--text-gray-600);
+}

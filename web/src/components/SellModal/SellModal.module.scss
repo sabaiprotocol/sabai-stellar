@@ -1,0 +1,111 @@
+.modal {
+  @include modalBody;
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: 700;
+  padding-right: toRem(32);
+}
+
+.subtitle {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+.walletRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: toRem(14);
+  padding-bottom: toRem(10);
+  border-bottom: 1px dashed var(--border-primary);
+}
+
+.walletLabel {
+  color: var(--text-gray-500);
+}
+
+.walletValue {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.amountRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: toRem(4);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  overflow: hidden;
+
+  span {
+    min-width: toRem(44);
+    text-align: center;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  button {
+    appearance: none;
+    border: none;
+    background: var(--bg-gray-25);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: toRem(18);
+    line-height: 1;
+    padding: toRem(8) toRem(14);
+
+    &:hover:not(:disabled) {
+      background: var(--bg-gray-50);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.note {
+  font-size: toRem(12);
+  line-height: 1.55;
+  color: var(--text-gray-500);
+  background: var(--bg-brand-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+}
+
+.success {
+  font-size: toRem(14);
+  line-height: 1.55;
+  color: var(--success-500);
+  background: var(--success-50);
+  border: 1px solid var(--success-500);
+  border-radius: toRem(10);
+  padding: toRem(12);
+
+  a {
+    color: var(--brand-500);
+    font-weight: 600;
+  }
+}
+
+.error {
+  font-size: toRem(13);
+  line-height: 1.5;
+  color: var(--error-500);
+  background: var(--error-50);
+  border: 1px solid var(--error-500);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+  overflow-wrap: anywhere;
+}

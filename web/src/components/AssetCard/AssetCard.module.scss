@@ -1,0 +1,229 @@
+/* Visual language mirrored from the client's PropertyItem card. */
+.item {
+  display: grid;
+  background-color: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  transition: box-shadow 0.5s;
+  height: fit-content;
+}
+
+.link {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  transition: transform 0.3s;
+  will-change: transform;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translate(0, toRem(-2));
+
+      .imageWrap img {
+        transform: scale(1.03);
+      }
+    }
+  }
+}
+
+.imageWrap {
+  position: relative;
+  /* 65% keeps the photo proportion identical across the card grids. */
+  aspect-ratio: 100 / 65;
+  border-radius: toRem(16) toRem(16) 0 0;
+  overflow: hidden;
+}
+
+/* Top-right corner — keeps the bottom edge free for the gallery dots. */
+.photoNote {
+  position: absolute;
+  right: toRem(10);
+  top: toRem(10);
+  font-size: toRem(11);
+  color: #fff;
+  background: rgba(5, 28, 51, 0.55);
+  border-radius: toRem(6);
+  padding: toRem(3) toRem(8);
+  backdrop-filter: blur(4px);
+}
+
+.paused {
+  position: absolute;
+  top: toRem(14);
+  left: toRem(14);
+  font-size: toRem(12);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--error-600);
+  background: var(--error-50);
+  border: 1px solid var(--error-200);
+  border-radius: toRem(999);
+  padding: toRem(4) toRem(12);
+}
+
+.body {
+  padding: toRem(20) toRem(14) toRem(4);
+  display: grid;
+  @include adaptiveValue('gap', 20, 10);
+}
+
+/* PropertyCost analogue */
+.cost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(10);
+}
+
+.costTitle {
+  color: var(--text-primary);
+  font-weight: 600;
+  @include adaptiveValue('font-size', 20, 16);
+}
+
+.costAmount {
+  font-size: toRem(16);
+  color: var(--text-gray-400, var(--gray-400));
+  white-space: nowrap;
+}
+
+.location {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+/* PercentPriceBlock analogue */
+.statsBlock {
+  padding: toRem(8);
+  background-color: var(--bg-brand-25);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: toRem(6);
+  column-gap: toRem(10);
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: toRem(8);
+
+  :global(.dark) & {
+    background-image:
+      linear-gradient(#061321, #061321),
+      linear-gradient(90deg, rgba(45, 154, 243, 0.2) 0%, rgba(160, 49, 248, 0.2) 100%);
+  }
+}
+
+.statsItem {
+  position: relative;
+  gap: toRem(6);
+  border-radius: toRem(12);
+  padding: toRem(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.statsTitle {
+  color: var(--text-primary);
+  font-weight: 500;
+  @include adaptiveValue('font-size', 12, 10);
+}
+
+.statsValue {
+  display: flex;
+  column-gap: toRem(4);
+  font-weight: 600;
+}
+
+.statsPrice {
+  color: var(--accent-price);
+}
+
+.statsYield {
+  color: var(--accent-yield);
+}
+
+.progressBlock {
+  padding-bottom: toRem(6);
+}
+
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: toRem(13);
+  color: var(--text-gray-600);
+  margin-bottom: toRem(6);
+
+  b {
+    color: var(--text-primary);
+  }
+}
+
+.progressTrack {
+  height: toRem(8);
+  border-radius: toRem(999);
+  background: var(--bg-gray-100);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: toRem(999);
+  background: var(--gradient-cta);
+  transition: width 0.4s ease;
+}
+
+.actions {
+  padding: toRem(4) toRem(14) toRem(18);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(160), 1fr));
+  @include adaptiveValue('column-gap', 20, 10);
+  @include adaptiveValue('row-gap', 20, 10);
+}
+
+/* Loading placeholders — same footprint as the loaded values, so the card
+   never changes size when on-chain data arrives. */
+.skeleton {
+  display: inline-block;
+  border-radius: toRem(6);
+  background: linear-gradient(
+    90deg,
+    var(--bg-gray-25) 25%,
+    var(--bg-gray-50) 50%,
+    var(--bg-gray-25) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonAmount {
+  width: toRem(96);
+  height: toRem(19);
+}
+
+.skeletonStat {
+  width: toRem(72);
+  height: toRem(19);
+}
+
+.skeletonLabel {
+  width: toRem(120);
+  height: toRem(16);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}

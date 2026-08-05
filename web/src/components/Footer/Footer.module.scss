@@ -1,0 +1,55 @@
+.footer {
+  border-top: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  margin-top: auto;
+
+  /* .page keeps a 20px gutter after the sidebar for the content — pull the
+     footer bar back so it sits flush against the sidebar edge. */
+  @media (min-width: toEm($tablet)) {
+    margin-left: toRem(-20);
+  }
+}
+
+.disclaimerRow {
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.disclaimer {
+  padding: toRem(12) toRem(20);
+  font-size: toRem(12);
+  line-height: 1.5;
+  color: var(--text-gray-500);
+}
+
+.inner {
+  padding: toRem(18) toRem(20);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(12);
+
+  @media (max-width: toEm($mobile)) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.copy {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+}
+
+.links {
+  display: flex;
+  gap: toRem(18);
+
+  a {
+    font-size: toRem(13);
+    color: var(--text-gray-500);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--brand-500);
+    }
+  }
+}

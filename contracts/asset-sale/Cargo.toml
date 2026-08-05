@@ -1,0 +1,23 @@
+[package]
+name = "asset-sale"
+description = "Sabai PoC — primary sale of fractional shares for XLM on Stellar testnet"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+# "lib" so asset-exchange tests can register a real AssetSale for KYC checks.
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+sabai-access = { workspace = true }
+
+[dev-dependencies]
+compliance-registry = { path = "../compliance-registry" }
+rewards-distributor = { path = "../rewards-distributor" }
+soroban-sdk = { workspace = true, features = ["testutils"] }
+share-token = { path = "../share-token" }

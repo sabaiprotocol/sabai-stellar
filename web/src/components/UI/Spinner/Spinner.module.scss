@@ -1,0 +1,21 @@
+.spinner {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  border: toRem(2) solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinnerRotate 0.7s linear infinite;
+
+  /* Still turning, because a frozen spinner reads as a hung app - just slowly
+     enough not to be the thing moving on the screen. */
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 2.4s;
+  }
+}
+
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

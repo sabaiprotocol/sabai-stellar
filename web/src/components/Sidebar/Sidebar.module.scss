@@ -1,0 +1,182 @@
+.aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  height: 100svh;
+  overflow-y: auto;
+  width: 18.055556%;
+  background-color: var(--bg-secondary);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  padding: toRem(30) toRem(10) toRem(20);
+  display: flex;
+  flex-direction: column;
+  transition:
+    width 0.3s,
+    overflow-x 0.3s 0.3s;
+
+  :global(.dark) & {
+    background-color: var(--bg-primary);
+  }
+
+  :global(.sidebar-slim) & {
+    width: toRem(60);
+    overflow: hidden;
+    z-index: 12;
+    padding-left: toRem(6);
+    padding-right: toRem(6);
+  }
+
+  @media (max-width: toEm($tablet)) {
+    display: none;
+  }
+}
+
+.logo {
+  align-self: center;
+  margin-bottom: toRem(16);
+}
+
+.logoShort {
+  display: none;
+}
+
+:global(.sidebar-slim) {
+  .logoFull {
+    display: none;
+  }
+
+  .logoShort {
+    display: block;
+  }
+}
+
+.toggle {
+  align-self: flex-end;
+  margin-bottom: toRem(24);
+
+  :global(.sidebar-slim) & {
+    align-self: center;
+  }
+}
+
+.menu {
+  flex: 1 1 auto;
+}
+
+.item {
+  &:not(:last-child) {
+    margin-bottom: toRem(6);
+  }
+}
+
+/* The active plate slides in
+   from the left; dark theme swaps it for a gradient border. */
+.link {
+  padding: toRem(16) toRem(24);
+  border-radius: toRem(12);
+  color: var(--nav-inactive-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: toRem(12);
+    background-color: var(--nav-active-bg);
+    border: toRem(1) solid var(--nav-active-border);
+    transition: transform 0.3s;
+    transform: translate(-130%, 0);
+
+    :global(.dark) & {
+      border-color: transparent;
+      background-image:
+        linear-gradient(var(--bg-secondary), var(--bg-secondary)), var(--gradient-nav-active);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+  }
+
+  svg {
+    position: relative;
+    flex: 0 0 toRem(20);
+    width: toRem(20);
+    height: toRem(20);
+    margin-right: toRem(16);
+    transition: transform 0.3s;
+  }
+
+  span {
+    position: relative;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &.active {
+    color: var(--nav-active-color);
+    pointer-events: none;
+
+    &::before {
+      transform: translate(0, 0);
+    }
+
+    svg {
+      color: var(--nav-active-icon);
+    }
+  }
+
+  /* Icon-only rail: label collapses, icon centers (as aside_slim). */
+  :global(.sidebar-slim) & {
+    padding: toRem(16) toRem(6);
+    justify-content: center;
+
+    svg {
+      margin-right: 0;
+    }
+
+    span {
+      max-width: 0;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--text-brand-600);
+      box-shadow: var(--nav-active-shadow);
+
+      svg {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.bottom {
+  padding: toRem(12) toRem(14) 0;
+  display: grid;
+  gap: toRem(4);
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+
+  :global(.sidebar-slim) & {
+    display: none;
+  }
+
+  a {
+    color: var(--brand-500);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

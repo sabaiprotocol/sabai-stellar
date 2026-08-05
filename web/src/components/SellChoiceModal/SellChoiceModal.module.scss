@@ -1,0 +1,71 @@
+.modal {
+  @include modalBody;
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: 700;
+  padding-right: toRem(32);
+}
+
+.subtitle {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+/* Two routes out of a position — instant buyback vs P2P listing. */
+.options {
+  display: grid;
+  gap: toRem(10);
+}
+
+.option {
+  appearance: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  background: var(--bg-primary);
+  border: toRem(1.5) solid var(--border-primary);
+  border-radius: toRem(12);
+  padding: toRem(14) toRem(16);
+  display: grid;
+  gap: toRem(6);
+  transition: border-color 0.3s, background 0.3s;
+
+  &:hover:not(:disabled) {
+    border-color: var(--brand-500);
+    background: var(--bg-brand-25);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.optionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(10);
+}
+
+.optionTitle {
+  font-size: toRem(15);
+  font-weight: 700;
+}
+
+.optionPrice {
+  font-size: toRem(13);
+  font-weight: 600;
+  color: var(--text-brand-500);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.optionText {
+  font-size: toRem(12);
+  line-height: 1.55;
+  color: var(--text-gray-500);
+}

@@ -1,0 +1,271 @@
+/* ============================================================
+ * Design Token System
+ *
+ * Layer 1 — Primitives   raw palette values, defined once
+ * Layer 2 — Semantic     aliases that components consume
+ *
+ * Rules:
+ * - Components must only use Layer 2 (semantic) tokens.
+ * - Dark theme (.dark) only overrides values that actually change.
+ * - Keep primitives minimal — don't add a new shade unless reused
+ *   in 2+ places. One-off product colors go under "Feature accents".
+ * ============================================================ */
+
+:root {
+  // ----------------------------------------------------------
+  // Layer 1: Primitives
+  // ----------------------------------------------------------
+
+  // Brand scale — blue
+  --brand-25: #f5faff;
+  --brand-50: #e8f3ff;
+  --brand-100: #d1e8ff;
+  --brand-200: #a4d1ff;
+  --brand-300: #76baff;
+  --brand-400: #49a3ff;
+  --brand-500: #1b8cff;
+  --brand-600: #1670cc;
+  --brand-700: #105499;
+  --brand-800: #0b3866;
+  --brand-900: #051c33;
+
+  // Gray scale — blue-tinted neutral
+  --gray-25: #fcfcfd;
+  --gray-50: #f9fafb;
+  --gray-100: #f2f4f7;
+  --gray-200: #eaecf0;
+  --gray-300: #d0d5dd;
+  --gray-400: #98a2b3;
+  --gray-500: #667085; // secondary body text
+  --gray-600: #475467; // muted values (prices, stats)
+  --gray-700: #344054;
+  --gray-800: #1d2939;
+  --gray-900: #101828;
+
+  // Status scale
+  --success-25: #f6fef9;
+  --success-50: #ecfdf3;
+  --success-100: #d1fadf;
+  --success-200: #a6f4c5;
+  --success-300: #6ce9a6;
+  --success-400: #32d583;
+  --success-500: #12b76a;
+  --success-600: #039855;
+  --success-700: #027a48;
+
+  --warning-25: #fffcf5;
+  --warning-50: #fffaeb;
+  --warning-100: #fef0c7;
+  --warning-200: #fedf89;
+  --warning-400: #fdb022;
+  --warning-500: #f79009;
+  --warning-600: #dc6803;
+
+  --error-25: #fffbfa;
+  --error-50: #fef3f2;
+  --error-100: #fee4e2;
+  --error-200: #fecdca;
+  --error-400: #f97066;
+  --error-500: #f04438;
+  --error-600: #d92d20;
+  --error-700: #b42318;
+
+  // ----------------------------------------------------------
+  // Layer 2: Surfaces
+  // ----------------------------------------------------------
+
+  --bg-primary: #f9fcff; // page background
+  --bg-secondary: #ffffff; // card / container background
+  --border-primary: var(--gray-200);
+
+  --bg-brand-25: var(--brand-25);
+  --bg-brand-50: var(--brand-50);
+  --bg-brand-100: var(--brand-100);
+  --bg-brand-200: var(--brand-200);
+  --bg-brand-300: var(--brand-300);
+  --bg-brand-400: var(--brand-400);
+  --bg-brand-500: var(--brand-500);
+  --bg-brand-600: var(--brand-600);
+  --bg-brand-700: var(--brand-700);
+  --bg-brand-800: var(--brand-800);
+  --bg-brand-900: var(--brand-900);
+
+  --bg-gray-25: var(--gray-25);
+  --bg-gray-50: var(--gray-50);
+  --bg-gray-100: var(--gray-100);
+  --bg-gray-200: var(--gray-200);
+  --bg-gray-300: var(--gray-300);
+  --bg-gray-700: var(--gray-700);
+
+  // ----------------------------------------------------------
+  // Layer 2: Text
+  // ----------------------------------------------------------
+
+  --text-primary: #0b3866; // headings / body
+  --text-secondary: #ffffff; // text placed on colored/brand backgrounds
+  --text-black: #202224;
+
+  --text-muted: var(--gray-600); // property values, stats (non-emphasized numbers)
+  --text-body: var(--gray-500); // secondary body copy
+
+  --text-brand-200: var(--brand-200);
+  --text-brand-400: var(--brand-400);
+  --text-brand-500: var(--brand-500);
+  --text-brand-600: var(--brand-600);
+  --text-brand-700: var(--brand-700);
+  --text-brand-800: var(--brand-800);
+  --text-brand-900: var(--brand-900);
+
+  --text-gray-300: var(--gray-300);
+  --text-gray-400: var(--gray-400);
+  --text-gray-500: var(--gray-500);
+  --text-gray-600: var(--gray-600);
+  --text-gray-700: var(--gray-700);
+  --text-gray-800: var(--gray-800);
+  --text-gray-900: var(--gray-900);
+
+  // ----------------------------------------------------------
+  // Layer 2: Feature accents (product-specific values that don't
+  // belong in the generic brand/gray scales)
+  // ----------------------------------------------------------
+
+  --logo-color: var(--brand-800); // sprite logo (sidebar / header / auth)
+
+  --accent-price: var(--brand-500); // entry / token price
+  --accent-yield: var(--success-600); // projected annual return
+
+  --gradient-cta: linear-gradient(90deg, #49a3ff 0%, #1b8cff 45%, #105499 100%); // primary CTA buttons
+  --gradient-nav-active: linear-gradient(90deg, #1b8cff 0%, #76baff 100%); // active nav border/glow (dark)
+
+  --overlay-bg: rgba(255, 255, 255, 1); // chips over property images
+  --overlay-border: rgba(255, 255, 255, 1);
+  --overlay-text: var(--brand-700);
+
+  --contact-color: var(--text-brand-500); // bottom menu "Contact us"
+  --header-accent: var(--text-brand-500); // wallet icon / USDT text / arrow
+  --burger-color: var(--text-primary); // menu burger lines
+  --help-icon-color: var(--text-brand-500); // help icon border/glow
+  --notification-dot: var(--error-500);
+
+  --wallet-pill-border: var(--brand-200); // USDT balance pill outline
+  --wallet-glow-gradient: none; // dark-only neon border gradient
+  --wallet-glow-shadow: none; // dark-only neon glow shadow
+
+  // ----------------------------------------------------------
+  // Layer 2: Navigation active state
+  // ----------------------------------------------------------
+
+  --nav-active-bg: #e8f3ff;
+  --nav-active-border: #d1e8ff;
+  --nav-active-color: #105499;
+  --nav-active-icon: #1b8cff;
+  --nav-active-shadow: 0 4px 16px rgba(27, 140, 255, 0.12);
+  --nav-inactive-color: #101828;
+
+  // ----------------------------------------------------------
+  // Layer 2: Utility
+  // ----------------------------------------------------------
+
+  --shadow-primary: rgba(33, 74, 187, 0.09);
+  --shadow-light-blue: rgba(44, 82, 188, 0.05);
+
+  --skeleton-base: #eaecf0;
+  --skeleton-high-light: #d0d5dd;
+
+  // Addresses, hashes and contract identifiers — anything that has to be
+  // compared character by character against an explorer.
+  --font-mono: ui-monospace, sfmono-regular, 'SF Mono', menlo, consolas, monospace;
+
+  color-scheme: light;
+}
+
+/* ============================================================
+ * Dark theme — only overrides what actually changes.
+ * Everything else cascades from :root via var() references.
+ * ============================================================ */
+.dark {
+  // Layout backgrounds
+  --bg-primary: #101828;
+  --bg-secondary: #1d2939;
+
+  // bg-brand: dark shades
+  --bg-brand-25: #051c33; // legacy nav active bg
+  --bg-brand-50: #051c33;
+  --bg-brand-100: #0b3866;
+
+  // bg-gray
+  --bg-gray-25: #1d2939;
+  --bg-gray-50: #344054;
+  --bg-gray-100: #344054;
+  // bg-gray-200 must pin its value — gray-200 primitive changes below
+  --bg-gray-200: #eaecf0;
+
+  // Border
+  --border-primary: #344054;
+
+  // Primitive overrides (cascade to all semantic aliases using them)
+  --brand-50: #0b3866;
+  --gray-200: #475467;
+
+  // Status — dark backgrounds use translucent tints
+  --success-50: rgba(135, 255, 183, 0.07);
+  --warning-25: rgba(255, 167, 90, 0.07);
+  --warning-50: rgba(255, 167, 90, 0.07);
+  --warning-100: rgba(255, 167, 90, 0.07);
+  --error-25: rgba(255, 81, 69, 0.07);
+  --error-50: rgba(255, 81, 69, 0.07);
+  --error-100: rgba(255, 81, 69, 0.07);
+  --error-700: rgba(180, 34, 24, 0.35);
+
+  // Text
+  --text-primary: #ffffff;
+  --text-black: #ffffff;
+  --text-brand-900: #e8f3ff;
+
+  // text-gray 600–900 become white in dark
+  --text-gray-500: #98a2b3;
+  --text-gray-600: #ffffff;
+  --text-gray-700: #ffffff;
+  --text-gray-800: #ffffff;
+  --text-gray-900: #ffffff;
+
+  // Feature accents
+  --logo-color: #ffffff;
+  --accent-price: #49a3ff;
+
+  --overlay-bg: rgba(5, 28, 51, 0.65);
+  --overlay-border: #1b8cff;
+  --overlay-text: #ffffff;
+
+  --contact-color: #49a3ff;
+  --header-accent: #76baff;
+  --burger-color: #49a3ff;
+  --help-icon-color: #49a3ff;
+  --notification-dot: #ff5a6a;
+
+  --wallet-pill-border: transparent;
+  --wallet-glow-gradient: linear-gradient(
+    90deg,
+    rgba(118, 186, 255, 0.15) 0%,
+    rgba(118, 186, 255, 1) 50%,
+    rgba(118, 186, 255, 0.15) 100%
+  );
+
+  // Navigation active state — glowing outline, no background fill, in dark
+  --nav-active-bg: transparent;
+  --nav-active-border: #1b8cff;
+  --nav-active-color: #ffffff;
+  --nav-active-icon: #49a3ff;
+  --nav-active-shadow: 0 0 12px rgba(27, 140, 255, 0.45), 0 0 24px rgba(118, 186, 255, 0.25);
+  --nav-inactive-color: #ffffff;
+
+  // Shadow
+  --shadow-primary: rgba(27, 140, 255, 0.1);
+  --shadow-light-blue: rgba(27, 140, 255, 0.05);
+
+  // Skeleton
+  --skeleton-base: #475467;
+  --skeleton-high-light: #1d2939;
+
+  color-scheme: dark;
+}

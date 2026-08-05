@@ -1,0 +1,176 @@
+/* One card aggregating every other holder's orders:
+   image header → cost → price block → mini order book → actions. */
+.item {
+  display: grid;
+  background-color: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  height: fit-content;
+}
+
+/* Clickable card body — opens the asset overview. */
+.link {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  transition: transform 0.3s;
+  will-change: transform;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translate(0, toRem(-2));
+    }
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 100 / 65;
+  border-radius: toRem(16) toRem(16) 0 0;
+  overflow: hidden;
+}
+
+.photoNote {
+  position: absolute;
+  right: toRem(10);
+  top: toRem(10);
+  font-size: toRem(11);
+  color: #fff;
+  background: rgba(5, 28, 51, 0.55);
+  border-radius: toRem(6);
+  padding: toRem(3) toRem(8);
+  backdrop-filter: blur(4px);
+}
+
+.body {
+  padding: toRem(20) toRem(14) toRem(4);
+  display: grid;
+  @include adaptiveValue('gap', 20, 10);
+}
+
+.cost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(10);
+}
+
+.costTitle {
+  color: var(--text-primary);
+  font-weight: 600;
+  @include adaptiveValue('font-size', 20, 16);
+}
+
+.costAmount {
+  font-size: toRem(16);
+  color: var(--text-gray-400, var(--gray-400));
+  white-space: nowrap;
+}
+
+.location {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+/* PercentPriceBlock — best price + projected return. */
+.priceBlock {
+  padding: toRem(8);
+  background-color: var(--bg-brand-25);
+  border-radius: toRem(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: toRem(6);
+}
+
+.priceItem {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: toRem(6);
+  padding: toRem(8);
+  border-radius: toRem(12);
+
+  &:first-child .priceValue {
+    color: var(--accent-price);
+  }
+
+  &:last-child .priceValue {
+    color: var(--accent-yield);
+  }
+}
+
+.priceTitle {
+  color: var(--text-primary);
+  font-weight: 500;
+  @include adaptiveValue('font-size', 12, 10);
+}
+
+.priceValue {
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mini order book inside the card. */
+.book {
+  display: grid;
+  gap: toRem(6);
+}
+
+.bookSummary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: toRem(8);
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+}
+
+.bookList {
+  display: grid;
+  gap: toRem(4);
+}
+
+.bookRow {
+  display: flex;
+  align-items: center;
+  gap: toRem(8);
+  font-size: toRem(13);
+  padding: toRem(5) toRem(8);
+  border-radius: toRem(8);
+  background: var(--bg-gray-25);
+
+  b {
+    color: var(--accent-price);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.bookSeller {
+  margin-left: auto;
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+  font-variant-numeric: tabular-nums;
+}
+
+.bookMore {
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+}
+
+.actions {
+  padding: toRem(16) toRem(14) toRem(18);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(150), 1fr));
+  @include adaptiveValue('column-gap', 20, 10);
+  @include adaptiveValue('row-gap', 12, 8);
+}

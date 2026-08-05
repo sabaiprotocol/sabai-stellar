@@ -1,0 +1,130 @@
+.gallery {
+  display: grid;
+  gap: toRem(10);
+}
+
+.main {
+  position: relative;
+  /* Wide hero on a wide sheet; 16/9 only where the sheet is narrow, so the
+     photo never eats the whole screen height on a phone. */
+  aspect-ratio: 21 / 9;
+  @media (max-width: toEm($mobile)) {
+    aspect-ratio: 16 / 9;
+  }
+  border-radius: toRem(10);
+  overflow: hidden;
+  background: var(--bg-gray-25);
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.active {
+  opacity: 1;
+}
+
+/* Bottom-left, not top-right: the modal's close button owns the top-right
+   corner of the image and the two used to sit on top of each other. */
+.counter {
+  position: absolute;
+  left: toRem(10);
+  bottom: toRem(10);
+  z-index: 2;
+  font-size: toRem(11);
+  color: #fff;
+  background: rgba(5, 28, 51, 0.55);
+  border-radius: toRem(6);
+  padding: toRem(3) toRem(8);
+  backdrop-filter: blur(4px);
+  font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: toRem(36);
+  height: toRem(36);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: rgba(5, 28, 51, 0.45);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+
+  svg {
+    width: toRem(16);
+    height: toRem(16);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background: rgba(5, 28, 51, 0.65);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.prev {
+  left: toRem(10);
+}
+
+.next {
+  right: toRem(10);
+
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Capped at 160px so thumbnails stay thumbnails on the wide sheet instead
+   of stretching into a second row of hero images. */
+.thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, toRem(160));
+  justify-content: start;
+  gap: toRem(10);
+
+  @media (max-width: toEm($mobile)) {
+    grid-auto-columns: 1fr;
+  }
+}
+
+.thumb {
+  appearance: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: toRem(8);
+  overflow: hidden;
+  background: var(--bg-gray-25);
+
+  img {
+    object-fit: cover;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    transition: background 0.3s;
+  }
+}
+
+.thumbActive::before {
+  background: rgba(0, 0, 0, 0);
+}

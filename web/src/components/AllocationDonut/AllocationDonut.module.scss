@@ -1,0 +1,70 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: toRem(18);
+}
+
+.donut {
+  width: toRem(108);
+  height: toRem(108);
+  flex-shrink: 0;
+}
+
+.track {
+  fill: none;
+  stroke: var(--bg-gray-100);
+  stroke-width: 5;
+}
+
+.value {
+  fill: none;
+  stroke: var(--brand-500);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.pct {
+  font-size: toRem(7);
+  font-weight: 700;
+  fill: var(--text-primary);
+  text-anchor: middle;
+}
+
+.caption {
+  font-size: toRem(4);
+  fill: var(--text-gray-500);
+  text-anchor: middle;
+}
+
+.legend {
+  display: grid;
+  gap: toRem(8);
+  font-size: toRem(13);
+  color: var(--text-gray-600);
+
+  b {
+    color: var(--text-primary);
+    margin-left: toRem(4);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+  }
+}
+
+.swatch {
+  width: toRem(10);
+  height: toRem(10);
+  border-radius: toRem(3);
+}
+
+.swatchSold {
+  background: var(--brand-500);
+}
+
+.swatchFree {
+  background: var(--bg-gray-100);
+}

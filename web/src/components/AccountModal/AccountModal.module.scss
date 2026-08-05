@@ -1,0 +1,161 @@
+.modal {
+  @include modalBody;
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: 700;
+  padding-right: toRem(32);
+}
+
+.subtitle {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+.walletRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: toRem(14);
+  padding-bottom: toRem(10);
+  border-bottom: 1px dashed var(--border-primary);
+}
+
+.walletLabel {
+  color: var(--text-gray-500);
+}
+
+.walletValue {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  font-size: toRem(12);
+  line-height: 1.55;
+  color: var(--text-gray-500);
+  background: var(--bg-brand-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+}
+
+.error {
+  font-size: toRem(13);
+  line-height: 1.5;
+  color: var(--error-500);
+  background: var(--error-50);
+  border: 1px solid var(--error-500);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+  overflow-wrap: anywhere;
+}
+
+/* Wallet identity plate — avatar dot + full address. */
+.identity {
+  display: flex;
+  align-items: center;
+  gap: toRem(12);
+  background: var(--bg-brand-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(12);
+  padding: toRem(12);
+}
+
+.avatar {
+  position: relative;
+  flex: 0 0 auto;
+  width: toRem(40);
+  height: toRem(40);
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: toRem(14);
+}
+
+.statusDot {
+  position: absolute;
+  right: toRem(-1);
+  bottom: toRem(-1);
+  width: toRem(12);
+  height: toRem(12);
+  border-radius: 50%;
+  background: var(--success-500);
+  border: toRem(2) solid var(--bg-secondary);
+}
+
+.identityBody {
+  min-width: 0;
+  display: grid;
+  gap: toRem(2);
+}
+
+.identityLabel {
+  font-size: toRem(11);
+  color: var(--text-gray-500);
+}
+
+.identityAddress {
+  font-size: toRem(13);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Action list — copy / explorer / switch / disconnect. */
+.menu {
+  display: grid;
+  gap: toRem(6);
+}
+
+.menuItem {
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+  display: flex;
+  align-items: center;
+  gap: toRem(10);
+  color: var(--text-primary);
+  font-size: toRem(14);
+  transition: background 0.3s, border-color 0.3s;
+
+  svg {
+    width: toRem(18);
+    height: toRem(18);
+    flex: 0 0 auto;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--bg-brand-25);
+    border-color: var(--brand-500);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.menuHint {
+  margin-left: auto;
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+}
+
+.menuDanger {
+  color: var(--error-500);
+
+  &:hover:not(:disabled) {
+    background: var(--error-50);
+    border-color: var(--error-500);
+  }
+}

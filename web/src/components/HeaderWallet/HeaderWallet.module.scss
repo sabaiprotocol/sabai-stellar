@@ -1,0 +1,118 @@
+.connect {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font-size: toRem(14);
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--gradient-cta);
+  border-radius: toRem(6);
+  padding: toRem(8) toRem(16);
+  white-space: nowrap;
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+/* Also a <button>: clicking the chip opens the account sheet. */
+.chip {
+  appearance: none;
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(10);
+  font-size: toRem(13);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  background: var(--bg-gray-25);
+  border-radius: toRem(999);
+  padding: toRem(6) toRem(14);
+  transition: border-color 0.3s, background 0.3s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      border-color: var(--brand-500);
+      background: var(--bg-brand-25);
+    }
+  }
+}
+
+.chipSkeleton {
+  width: toRem(216);
+  height: toRem(30);
+  border-color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--bg-gray-25) 25%,
+    var(--bg-gray-50) 50%,
+    var(--bg-gray-25) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+
+  @media (max-width: toEm($mobileSmall)) {
+    width: toRem(110);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.balances {
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(10);
+
+  @media (max-width: toEm($mobileSmall)) {
+    display: none;
+  }
+}
+
+.balance {
+  display: inline-flex;
+  align-items: baseline;
+  gap: toRem(4);
+  white-space: nowrap;
+
+  i {
+    font-style: normal;
+    font-size: toRem(11);
+    font-weight: 500;
+    color: var(--header-accent, var(--brand-500));
+  }
+}
+
+.divider {
+  width: 1px;
+  height: toRem(16);
+  background: var(--border-primary);
+
+  @media (max-width: toEm($mobileSmall)) {
+    display: none;
+  }
+}
+
+.address {
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(8);
+}
+
+.dot {
+  width: toRem(8);
+  height: toRem(8);
+  border-radius: 50%;
+  background: var(--success-500);
+}

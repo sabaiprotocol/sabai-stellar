@@ -1,0 +1,11 @@
+# Pinned so the wasm a reviewer builds is the wasm we deployed.
+#
+# `npm run verify-wasm` compares three hashes - the repository's, a local
+# build's, and the one the network stores - and that comparison only means
+# something if the compiler is the same. Without this file the check quietly
+# degrades into "the bytes I happened to produce today".
+[toolchain]
+channel = "1.97.1"
+targets = ["wasm32v1-none"]
+profile = "minimal"
+components = ["rustfmt", "clippy"]

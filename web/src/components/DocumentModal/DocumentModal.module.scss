@@ -1,0 +1,76 @@
+.modal {
+  padding: toRem(28) toRem(24);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(14);
+
+  /* Wide sheet, narrow measure: the text column stays readable while the
+     sheet keeps the width a document reader needs. The close button is the
+     only <button> child and must keep its own size. */
+  > *:not(button) {
+    width: 100%;
+    max-width: toRem(780);
+    margin-inline: auto;
+  }
+
+  @media (max-width: toEm($mobile)) {
+    padding: toRem(16);
+  }
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: 700;
+  padding-right: toRem(32);
+}
+
+.subtitle {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+.note {
+  font-size: toRem(12);
+  line-height: 1.55;
+  color: var(--text-gray-500);
+  background: var(--bg-brand-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+}
+
+.doc {
+  display: grid;
+  gap: toRem(16);
+}
+
+.section {
+  display: grid;
+  gap: toRem(8);
+}
+
+.heading {
+  font-size: toRem(15);
+  font-weight: 700;
+}
+
+.paragraph {
+  font-size: toRem(14);
+  line-height: 1.7;
+  color: var(--text-gray-600);
+}
+
+.list {
+  display: grid;
+  gap: toRem(6);
+  padding-left: toRem(18);
+  list-style: disc;
+
+  li {
+    font-size: toRem(14);
+    line-height: 1.65;
+    color: var(--text-gray-600);
+    overflow-wrap: anywhere;
+  }
+}

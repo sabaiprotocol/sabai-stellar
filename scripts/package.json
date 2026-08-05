@@ -1,0 +1,29 @@
+{
+  "name": "@sabai/poc-scripts",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Deploy and lifecycle scripts for the Sabai Stellar PoC (testnet)",
+  "scripts": {
+    "setup-multisig": "tsx setup-multisig.ts",
+    "deploy": "tsx deploy.ts",
+    "upgrade": "tsx upgrade.ts",
+    "redeploy": "tsx redeploy-after-reset.ts",
+    "admin": "tsx admin.ts",
+    "smoke-buy": "tsx smoke-buy.ts",
+    "seed-demo": "tsx seed-demo.ts",
+    "compliance-drill": "tsx compliance-drill.ts",
+    "governance-drill": "tsx governance-drill.ts",
+    "deposit-round": "tsx deposit-round.ts",
+    "verify-wasm": "tsx verify-wasm.ts",
+    "bindings": "tsx gen-bindings.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^16.2.0",
+    "dotenv": "^17.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0"
+  }
+}

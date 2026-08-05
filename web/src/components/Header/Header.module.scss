@@ -1,0 +1,139 @@
+/* Fixed shell + card container —
+   on desktop it sits to the right of the fixed sidebar. */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 12;
+  background: var(--bg-primary);
+
+  transition: left 0.3s;
+
+  @media (min-width: toEm($tablet)) {
+    left: calc(18.055556% + toRem(20));
+    /* No extra left padding — the card starts right at the page gutter,
+       (the shell itself only keeps a right margin). */
+    padding: toRem(10) toRem(20) 0 0;
+
+    :global(.sidebar-slim) & {
+      left: toRem(80);
+    }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(16);
+  min-height: toRem(50);
+  padding: toRem(10) toRem(20);
+  background: var(--bg-secondary);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+
+  @media (min-width: toEm($tablet)) {
+    border-radius: toRem(24);
+  }
+
+  @media (max-width: toEm($tablet)) {
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  @media (max-width: toEm($mobileSmall)) {
+    padding: toRem(10) toRem(15);
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: toRem(12);
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--text-black, var(--text-primary));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include adaptiveValue('font-size', 24, 20);
+
+  @media (max-width: toEm($tablet)) {
+    display: none;
+  }
+}
+
+.logoCompact {
+  display: none;
+
+  @media (max-width: toEm($tablet)) {
+    display: inline-flex;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: toRem(12);
+}
+
+/* Below $tablet the link, the badge and the theme toggle move
+   into the burger menu — only the wallet stays in the bar. */
+.demo {
+  font-size: toRem(13);
+  font-weight: 600;
+  color: var(--brand-500);
+  background: var(--bg-gray-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(999);
+  padding: toRem(5) toRem(12);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--bg-gray-50, var(--bg-gray-25));
+  }
+
+  @media (max-width: toEm($tablet)) {
+    display: none;
+  }
+}
+
+.contractLink {
+  font-size: toRem(13);
+  color: var(--brand-500);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: toEm($tablet)) {
+    display: none;
+  }
+}
+
+.desktopOnly {
+  display: contents;
+
+  @media (max-width: toEm($tablet)) {
+    display: none;
+  }
+}
+
+.badge {
+  font-size: toRem(12);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--warning-700, #b54708);
+  background: var(--warning-50, #fffaeb);
+  border: 1px solid var(--warning-200, #fedf89);
+  border-radius: toRem(999);
+  padding: toRem(4) toRem(12);
+
+  @media (max-width: toEm($tablet)) {
+    display: none;
+  }
+}

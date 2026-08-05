@@ -1,0 +1,33 @@
+{
+  "name": "sabai-stellar",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sabai — RWA fractional ownership PoC on Stellar testnet (Soroban)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.18.0"
+  },
+  "workspaces": [
+    "web",
+    "scripts",
+    "packages/bindings/*"
+  ],
+  "scripts": {
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "audit": "npm audit --audit-level=moderate"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.5",
+    "typescript": "~6.0.3"
+  },
+  "//overrides": "Transitive advisories that upstream still pins to a vulnerable version. Drop each entry once the parent ships the fix on its own.",
+  "overrides": {
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3",
+    "svg-sprite": {
+      "brace-expansion": "^1.1.17"
+    }
+  }
+}

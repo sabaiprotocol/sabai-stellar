@@ -1,0 +1,19 @@
+[package]
+name = "sabai-access"
+description = "Sabai PoC — the admin, operator and upgrade rules every contract shares"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+# No cdylib: this is linked into the five contracts, not deployed on its own.
+crate-type = ["lib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }

@@ -1,0 +1,21 @@
+.button {
+  position: relative;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-gray-600);
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--bg-brand-500);
+    }
+  }
+
+  svg {
+    transition: color 0.3s;
+    width: toRem(20);
+    height: toRem(22);
+  }
+}

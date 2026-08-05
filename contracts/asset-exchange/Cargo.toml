@@ -1,0 +1,23 @@
+[package]
+name = "asset-exchange"
+description = "Sabai PoC — on-chain secondary market (escrow order book) for fractional shares"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+sabai-access = { workspace = true }
+
+[dev-dependencies]
+compliance-registry = { path = "../compliance-registry" }
+rewards-distributor = { path = "../rewards-distributor" }
+soroban-sdk = { workspace = true, features = ["testutils"] }
+share-token = { path = "../share-token" }
+asset-sale = { path = "../asset-sale" }

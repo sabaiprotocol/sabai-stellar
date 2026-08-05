@@ -1,0 +1,213 @@
+/* Assets grid:
+   repeat(auto-fill, minmax(370, 1fr)) — the card keeps list-card width
+   instead of stretching across the content column. */
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(toRem(370), 1fr));
+  gap: toRem(20);
+  align-items: start;
+  width: 100%;
+  @include adaptiveValue('padding-top', 32, 16);
+  @include adaptiveValue('padding-bottom', 60, 24);
+  padding-left: toRem(20);
+  padding-right: toRem(20);
+  height: fit-content;
+
+  @media (max-width: toEm($mobile)) {
+    grid-template-columns: repeat(auto-fill, minmax(toRem(280), 1fr));
+  }
+}
+
+/* Tabs span the grid so the cards below keep their auto-fill columns. */
+.tabs {
+  grid-column: 1 / -1;
+}
+
+.emptyCard {
+  /* Empty states center on the content area; the cards grid stays left. */
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: toRem(480);
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  padding: toRem(32) toRem(24);
+  display: grid;
+  justify-items: center;
+  gap: toRem(12);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: toRem(18);
+  font-weight: 700;
+}
+
+.emptyText {
+  font-size: toRem(14);
+  line-height: 1.55;
+  color: var(--text-gray-600);
+  max-width: toRem(420);
+}
+
+/* Card shell — same language as AssetCard. */
+.item {
+  display: grid;
+  background-color: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  height: fit-content;
+}
+
+/* Clickable card body — opens the asset overview. */
+.link {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  transition: transform 0.3s;
+  will-change: transform;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translate(0, toRem(-2));
+    }
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 100 / 65;
+  border-radius: toRem(16) toRem(16) 0 0;
+  overflow: hidden;
+}
+
+.photoNote {
+  position: absolute;
+  right: toRem(10);
+  top: toRem(10);
+  font-size: toRem(11);
+  color: #fff;
+  background: rgba(5, 28, 51, 0.55);
+  border-radius: toRem(6);
+  padding: toRem(3) toRem(8);
+  backdrop-filter: blur(4px);
+}
+
+/* Card-shaped placeholder while the share balance loads. */
+.cardSkeleton {
+  aspect-ratio: 100 / 130;
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  background: linear-gradient(
+    90deg,
+    var(--bg-gray-25) 25%,
+    var(--bg-gray-50) 50%,
+    var(--bg-gray-25) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.body {
+  padding: toRem(20) toRem(14) toRem(4);
+  display: grid;
+  @include adaptiveValue('gap', 20, 10);
+}
+
+.cost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(10);
+}
+
+.costTitle {
+  color: var(--text-primary);
+  font-weight: 600;
+  @include adaptiveValue('font-size', 20, 16);
+}
+
+.costAmount {
+  font-size: toRem(16);
+  color: var(--text-gray-400, var(--gray-400));
+  white-space: nowrap;
+}
+
+.location {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+.actions {
+  padding: toRem(16) toRem(14) toRem(18);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include adaptiveValue('column-gap', 20, 10);
+  @include adaptiveValue('row-gap', 12, 8);
+}
+
+.claimButton {
+  grid-column: 1 / -1;
+}
+
+.claimError {
+  grid-column: 1 / -1;
+  font-size: toRem(13);
+  line-height: 1.5;
+  color: var(--error-500);
+  overflow-wrap: anywhere;
+}
+
+.claimNote {
+  grid-column: 1 / -1;
+  font-size: toRem(13);
+  line-height: 1.5;
+  color: var(--text-gray-500);
+}
+
+.skeleton {
+  display: inline-block;
+  border-radius: toRem(6);
+  background: linear-gradient(
+    90deg,
+    var(--bg-gray-25) 25%,
+    var(--bg-gray-50) 50%,
+    var(--bg-gray-25) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonAmount {
+  width: toRem(96);
+  height: toRem(19);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.note {
+  grid-column: 1 / -1;
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+
+  a {
+    color: var(--brand-500);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

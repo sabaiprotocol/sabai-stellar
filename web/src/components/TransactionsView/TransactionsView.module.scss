@@ -1,0 +1,114 @@
+/* Full width of the content column — no max-width cap. */
+.layout {
+  display: grid;
+  gap: toRem(16);
+  width: 100%;
+  @include adaptiveValue('padding-top', 32, 16);
+  @include adaptiveValue('padding-bottom', 60, 24);
+  padding-left: toRem(20);
+  padding-right: toRem(20);
+  height: fit-content;
+}
+
+.card {
+  background: var(--bg-secondary);
+  border-radius: toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  @include adaptiveValue('padding', 26, 16);
+  display: grid;
+  gap: toRem(16);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: toRem(12);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: 700;
+}
+
+.syncNote {
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+
+  a {
+    color: var(--brand-500);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(150), 1fr));
+  gap: toRem(10);
+}
+
+.stat {
+  background: var(--bg-brand-25);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+  display: grid;
+  gap: toRem(4);
+}
+
+.statLabel {
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+}
+
+.statValue {
+  font-size: toRem(16);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.in {
+  color: var(--success-500);
+}
+
+.out {
+  color: var(--text-primary);
+}
+
+.empty {
+  padding: toRem(28) toRem(16);
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: toRem(8);
+}
+
+.emptyTitle {
+  font-size: toRem(16);
+  font-weight: 700;
+}
+
+.emptyText {
+  font-size: toRem(14);
+  line-height: 1.55;
+  color: var(--text-gray-600);
+  max-width: toRem(460);
+}
+
+/* Disconnected state keeps the centred card of the other pages. */
+.emptyCard {
+  width: 100%;
+  max-width: toRem(480);
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  padding: toRem(32) toRem(24);
+  display: grid;
+  justify-items: center;
+  gap: toRem(12);
+  text-align: center;
+}

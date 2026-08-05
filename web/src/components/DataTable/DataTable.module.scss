@@ -1,0 +1,163 @@
+/* A grid shared by the header row and every data row, zebra backgrounds, and per-cell labels that take over from the
+   header below 1300px (the header itself disappears there). */
+.table {
+  width: 100%;
+  display: grid;
+  gap: toRem(8);
+}
+
+.headers {
+  display: grid;
+  gap: toRem(20);
+  grid-template-columns: var(--cols);
+  padding: 0 toRem(20);
+  color: var(--text-gray-500);
+
+  @media (max-width: toEm(1300)) {
+    display: none;
+  }
+}
+
+.headerItem {
+  line-height: 1.5;
+  font-size: toRem(12);
+  text-transform: uppercase;
+}
+
+.rows {
+  display: grid;
+  gap: toRem(4);
+}
+
+.row {
+  min-height: toRem(54);
+  border-radius: toRem(16);
+  padding: toRem(8) toRem(20);
+  display: flex;
+  align-items: center;
+
+  &:nth-child(odd) {
+    background-color: var(--bg-gray-100, var(--bg-gray-50));
+  }
+}
+
+.cells {
+  width: 100%;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+  gap: toRem(20);
+  grid-template-columns: var(--cols);
+
+  @media (max-width: toEm(1300)) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: toEm($mobile)) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cell {
+  min-width: 0;
+  max-width: 100%;
+  display: grid;
+  gap: toRem(2);
+
+  @media (max-width: toEm(1300)) {
+    grid-template-rows: 1fr auto;
+  }
+}
+
+/* The header text moves inside the cell on narrow viewports. */
+.cellTitle {
+  font-size: toRem(11);
+  text-transform: uppercase;
+  color: var(--text-gray-500);
+  font-weight: 500;
+
+  @media (min-width: toEm(1300)) {
+    display: none;
+  }
+}
+
+.cellValue {
+  font-size: toRem(14);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: toRem(13.5);
+  padding: toRem(4) toRem(11);
+  font-size: toRem(13);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.green {
+  color: var(--success-500);
+  background-color: var(--success-50);
+}
+
+.blue {
+  color: var(--brand-500);
+  background-color: var(--bg-brand-50);
+}
+
+.red {
+  color: var(--error-400);
+  background-color: var(--error-50);
+}
+
+.orange {
+  color: var(--warning-400, #fdb022);
+  background-color: var(--warning-50, rgba(253, 176, 34, 0.12));
+}
+
+.gray {
+  color: var(--text-gray-500);
+  background-color: var(--bg-gray-50);
+}
+
+/* Transaction hash cell: explorer link + copy button. */
+.hash {
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(6);
+}
+
+.hashLink {
+  color: var(--brand-500);
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.copy {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: toRem(2);
+  cursor: pointer;
+  color: var(--text-gray-500);
+  display: inline-flex;
+
+  svg {
+    width: toRem(14);
+    height: toRem(14);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--brand-500);
+    }
+  }
+}
+
+.copied {
+  color: var(--success-500);
+}

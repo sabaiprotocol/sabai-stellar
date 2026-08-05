@@ -1,0 +1,20 @@
+[package]
+name = "share-token"
+description = "Sabai PoC — fractional share token of a tokenized real-estate asset"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+sabai-access = { workspace = true }
+
+[dev-dependencies]
+compliance-registry = { path = "../compliance-registry" }
+soroban-sdk = { workspace = true, features = ["testutils"] }

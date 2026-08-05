@@ -1,0 +1,79 @@
+.nav {
+  overflow-x: auto;
+  /* overflow-y must be stated: leaving it `visible` next to a non-visible
+     overflow-x makes the browser compute it to `auto`, and the active tab's
+     underline (bottom: -7px) then pokes 1px past the padding box and raises
+     a vertical scrollbar. The padding keeps the underline unclipped. */
+  overflow-y: hidden;
+  padding-bottom: toRem(9);
+}
+
+.list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border-bottom: toRem(1) solid var(--border-primary);
+
+  @media (max-width: toEm($mobile)) {
+    gap: toRem(8);
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: toRem(10);
+  }
+}
+
+.item {
+  @media (max-width: toEm($mobile)) {
+    width: 100%;
+  }
+
+  &:not(:last-child) {
+    margin-right: toRem(6);
+  }
+}
+
+.link {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+  font-weight: 500;
+  position: relative;
+  padding: toRem(10) toRem(20);
+  color: var(--text-gray-400);
+  transition: color 0.3s;
+
+  &.active {
+    color: var(--text-brand-500);
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: toRem(2);
+      bottom: toRem(0);
+      left: 0;
+      background-color: var(--brand-500);
+    }
+  }
+
+  @media (max-width: toEm($mobile)) {
+    border: toRem(1.5) solid var(--brand-500);
+    border-radius: toRem(8);
+    width: 100%;
+
+    &::before {
+      content: '';
+      opacity: 0;
+    }
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--text-brand-500);
+    }
+  }
+}

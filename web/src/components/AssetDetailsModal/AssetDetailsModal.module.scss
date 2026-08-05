@@ -1,0 +1,285 @@
+.modal {
+  overflow-x: hidden;
+}
+
+/* Zero-height sticky strip above the gallery: the button floats over the photo
+   without pushing it down, and stays reachable while the tabs scroll — this is
+   a tall modal, and an absolute close scrolls out of sight. */
+.closeBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.close {
+  /* Sits inside the image, clear of its rounded corner (gallery padding 20
+     + 10 inset) instead of straddling the edge. */
+  margin: toRem(30) toRem(30) 0 0;
+  pointer-events: auto;
+  width: toRem(32);
+  height: toRem(32);
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: toRem(8);
+  background: rgba(5, 28, 51, 0.65);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background: rgba(5, 28, 51, 0.85);
+  }
+}
+
+.gallery {
+  padding: toRem(20) toRem(20) 0;
+}
+
+.tabs {
+  padding: toRem(14) toRem(20) 0;
+}
+
+.content {
+  padding: toRem(20);
+}
+
+.title {
+  font-size: toRem(20);
+  font-weight: 700;
+}
+
+.location {
+  margin-top: toRem(2);
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+}
+
+/* Description tab: text column on the left, figures panel on the right. */
+.overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) toRem(320);
+  gap: toRem(24);
+  align-items: start;
+
+  @media (max-width: toEm($tablet)) {
+    grid-template-columns: 1fr;
+    gap: toRem(18);
+  }
+}
+
+.overviewMain,
+.overviewSide {
+  display: grid;
+  gap: toRem(16);
+  align-content: start;
+}
+
+.description {
+  font-size: toRem(14);
+  line-height: 1.65;
+  color: var(--text-gray-600);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: toRem(10);
+
+  @media (max-width: toEm($mobileSmall)) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.fact {
+  background: var(--bg-gray-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  padding: toRem(8) toRem(10);
+
+  dt {
+    font-size: toRem(11);
+    color: var(--text-gray-500);
+  }
+
+  dd {
+    margin-top: toRem(2);
+    font-size: toRem(13);
+    font-weight: 600;
+  }
+}
+
+.allocation {
+  padding: toRem(14);
+  background: var(--bg-gray-25);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(12);
+}
+
+.subtitle {
+  margin-top: toRem(18);
+  font-size: toRem(14);
+  font-weight: 700;
+}
+
+.contracts {
+  margin-top: toRem(8);
+  display: grid;
+  gap: toRem(10);
+
+  li {
+    display: grid;
+    gap: toRem(3);
+    font-size: toRem(13);
+
+    span {
+      color: var(--text-gray-500);
+    }
+
+    a {
+      color: var(--brand-500);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+
+      &:hover b {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.contractHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: toRem(10);
+}
+
+.hash {
+  font-family: var(--font-mono);
+  font-size: toRem(11);
+  color: var(--text-gray-500);
+  overflow-wrap: anywhere;
+}
+
+.inline {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--text-gray-700);
+}
+
+.terms {
+  margin-top: toRem(8);
+  display: grid;
+  gap: toRem(8);
+
+  > div {
+    display: grid;
+    // The label column fits "Anchored bundle"; the value column takes the rest
+    // and is allowed to shrink, so a 64-character hash wraps instead of pushing
+    // the sheet sideways.
+    grid-template-columns: toRem(140) minmax(0, 1fr);
+    gap: toRem(10);
+    font-size: toRem(13);
+
+    @media (max-width: toEm($mobileSmall)) {
+      grid-template-columns: 1fr;
+      gap: toRem(2);
+    }
+  }
+
+  dt {
+    color: var(--text-gray-500);
+  }
+
+  dd {
+    overflow-wrap: anywhere;
+  }
+
+  a {
+    color: var(--brand-500);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.disclaimer {
+  margin-top: toRem(16);
+  padding-top: toRem(12);
+  border-top: 1px solid var(--border-primary);
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+}
+
+/* Header above the tabs — name, location and the specs row. */
+.header {
+  padding: toRem(16) toRem(20) 0;
+}
+
+.specs {
+  margin-top: toRem(10);
+  display: flex;
+  flex-wrap: wrap;
+  gap: toRem(14);
+  font-size: toRem(13);
+  color: var(--text-gray-600);
+}
+
+.spec {
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(6);
+
+  svg {
+    width: toRem(18);
+    height: toRem(18);
+    color: var(--brand-500);
+  }
+}
+
+.keyFigures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(140), 1fr));
+  gap: toRem(10);
+}
+
+.figure {
+  background: var(--bg-brand-25);
+  border-radius: toRem(10);
+  padding: toRem(10) toRem(12);
+  display: grid;
+  gap: toRem(4);
+}
+
+.figureLabel {
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+}
+
+.figureValue {
+  font-size: toRem(15);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sectionText {
+  margin-top: toRem(12);
+  /* Keep the measure readable — the sheet is 960 wide, prose is not. */
+  max-width: toRem(780);
+  font-size: toRem(13);
+  line-height: 1.65;
+  color: var(--text-gray-600);
+}
+
+.documents {
+  margin-top: toRem(14);
+}

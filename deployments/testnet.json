@@ -1,0 +1,52 @@
+{
+  "network": "testnet",
+  "protocolVersion": 27,
+  "updatedAt": "2026-08-04T01:59:18.379Z",
+  "asset": {
+    "name": "Sabai Lagoon Residence No. 1",
+    "symbol": "SLR1",
+    "priceStroops": "1000000000",
+    "totalShares": "1000",
+    "buybackDiscountBps": 500,
+    "saleCommissionBps": 200
+  },
+  "accounts": {
+    "admin": "GDGDXKNKTBLG7Q6AXIVPXY7VAUB4BQDLQS7CPBKDRPJPDWFMQPD43B4D",
+    "operator": "GB3X3QMEI3R6UXJ66BIBUKMGOCNHAQETGDNBUA3GT2K3JAJFXPXKU5OO",
+    "treasury": "GDYDNXKILPBQMNAIZWRZYTZ42QYVZIPCBVBEMZE2RL7SG6XAQVTPSY3O",
+    "feeTo": "GBLTBW3F7MQTQCK74P57SK3JMLIWIVG7QB7AW6V26U5NT64JFCXCPQWJ",
+    "kycProvider": "GA6ISPFRTSRF65TPX7YU4NWYNFNL4HNQYSGTCEEMW4LULC2QPEM5PDK6"
+  },
+  "governance": {
+    "quorum": 2,
+    "signers": 3,
+    "adminAccountLink": "https://stellar.expert/explorer/testnet/account/GDGDXKNKTBLG7Q6AXIVPXY7VAUB4BQDLQS7CPBKDRPJPDWFMQPD43B4D"
+  },
+  "contracts": {
+    "registry": "CBNLW6LXBXALOBF3OQ2SAY2JVKP5YFN5VPKWM663FO3OCT5YXKGIFZ6J",
+    "shareToken": "CAAYJPFOVUHSQJEJA5G3WBBZRNX7GAYTT2C2IJG6TYB7RZCPRN3ZC4XQ",
+    "assetSale": "CCJXESXDL7EDQQJ53MVQDEBYIXNQLLD27RKWGNE5LPOQL45Q6CTGWD7J",
+    "exchange": "CA7RAEYCZSQL2GWHSIOZNLBWUVJJYAC4GUUGT535HVC5A6GHFLAUL7EV",
+    "rewards": "CCEH6S5P7T2JZDD5EIDKEL3ZAYVPVHD4JFYRLXSVNPXYAB2D775RWPSN",
+    "nativeSac": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+  },
+  "links": {
+    "registry": "https://stellar.expert/explorer/testnet/contract/CBNLW6LXBXALOBF3OQ2SAY2JVKP5YFN5VPKWM663FO3OCT5YXKGIFZ6J",
+    "shareToken": "https://stellar.expert/explorer/testnet/contract/CAAYJPFOVUHSQJEJA5G3WBBZRNX7GAYTT2C2IJG6TYB7RZCPRN3ZC4XQ",
+    "assetSale": "https://stellar.expert/explorer/testnet/contract/CCJXESXDL7EDQQJ53MVQDEBYIXNQLLD27RKWGNE5LPOQL45Q6CTGWD7J",
+    "exchange": "https://stellar.expert/explorer/testnet/contract/CA7RAEYCZSQL2GWHSIOZNLBWUVJJYAC4GUUGT535HVC5A6GHFLAUL7EV",
+    "rewards": "https://stellar.expert/explorer/testnet/contract/CCEH6S5P7T2JZDD5EIDKEL3ZAYVPVHD4JFYRLXSVNPXYAB2D775RWPSN"
+  },
+  "wasmHashes": {
+    "registry": "b7eb049987805d784fea1865e7d9d569ec1d91864f4011cb70f49341cd608d89",
+    "shareToken": "2b319dbd6e2ba077060301efe2cb76c3adf3f0e0e6ff6d0613ed42e03e458fbb",
+    "assetSale": "2e9e0a6bda53503e04db1e122d4a75e9cda8828ea6a8e8f9a564c9428a129a10",
+    "exchange": "a353b9555019aa04b9401582aad3f8a575d4b76bf2714134eedf726a90ce5df6",
+    "rewards": "2c30fd9fd40479dab750e54cb5ef164431ce043977ac01779549d9e1d521bea7"
+  },
+  "exchange": {
+    "commissionBps": 200,
+    "minRateStroops": "500000000",
+    "maxRateStroops": "2000000000"
+  }
+}

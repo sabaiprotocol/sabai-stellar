@@ -1,0 +1,10 @@
+# Local-dev fix for Windows GNU hosts only.
+#
+# `cargo test` also links the cdylib crate-type for the HOST target; with the
+# mingw linker every public symbol of the soroban deps gets auto-exported and
+# overflows the PE export-ordinal limit (65535): "export ordinal too large".
+# Excluding auto-exports from the host cdylib (a test-only artifact) fixes it.
+# The wasm32v1-none release build — the artifact that actually ships — is
+# unaffected, as are Linux/macOS hosts and CI.
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "link-args=-Wl,--exclude-all-symbols"]

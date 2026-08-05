@@ -1,0 +1,111 @@
+name: ci
+
+# Nothing here needs a secret and nothing here touches the network. The two
+# scripts that do - `deploy` and the drills - are run by hand against testnet
+# and their output is in the docs, because a workflow holding the deployer key
+# would be the weakest thing in this repository.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  # Matches contracts/rust-toolchain.toml. Kept in step by the build itself:
+  # a mismatch changes the wasm hashes and `verify-wasm` stops matching.
+  STELLAR_CLI_VERSION: 27.0.0
+
+jobs:
+  contracts:
+    name: contracts (fmt, clippy, test, wasm)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v4
+
+      # The toolchain version and the wasm target both come from
+      # contracts/rust-toolchain.toml, so there is one place to change them.
+      - name: Install the pinned Rust toolchain
+        run: rustup show
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: contracts
+
+      - run: cargo fmt --all --check
+
+      - run: cargo clippy --all-targets -- -D warnings
+
+      - run: cargo test --workspace
+
+      - name: Install stellar-cli ${{ env.STELLAR_CLI_VERSION }}
+        run: |
+          curl -sSfL "https://github.com/stellar/stellar-cli/releases/download/v${STELLAR_CLI_VERSION}/stellar-cli-${STELLAR_CLI_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C /usr/local/bin stellar
+          stellar --version
+
+      - run: stellar contract build
+
+      # Five artifacts, and every one of them small enough to be plausible.
+      # A build that silently produced four would otherwise pass.
+      - name: Check the artifacts
+        run: |
+          set -euo pipefail
+          cd target/wasm32v1-none/release
+          for wasm in compliance_registry share_token asset_sale asset_exchange rewards_distributor; do
+            test -f "$wasm.wasm" || { echo "missing $wasm.wasm"; exit 1; }
+            printf '%s  %s\n' "$(sha256sum "$wasm.wasm" | cut -d' ' -f1)" "$wasm.wasm"
+          done
+
+  web:
+    name: web and scripts (biome, tsc, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # The generated contract bindings are committed, so this job needs
+      # neither a build of the contracts nor a network call.
+      - run: npm ci
+
+      - run: npx biome ci .
+
+      - name: Typecheck
+        run: |
+          npm run typecheck --workspace scripts
+          npx tsc --noEmit --project web/tsconfig.json
+
+      # The claim above - that the committed dist/ makes Rust unnecessary here -
+      # only holds while dist/ still matches its own src/. Rebuilding it and
+      # requiring a clean tree is what turns that from a convention into a
+      # check, and it is the only thing that compiles the bindings at all.
+      - name: The committed bindings still compile to what is committed
+        run: |
+          set -euo pipefail
+          for p in packages/bindings/*/; do npm run build --workspace "$p"; done
+          git diff --exit-code -- packages/bindings
+
+      - run: npm run build --workspace web
+
+  audit:
+    name: npm advisories
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=moderate

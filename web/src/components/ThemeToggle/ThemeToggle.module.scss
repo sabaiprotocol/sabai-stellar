@@ -1,0 +1,20 @@
+.toggle {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: toRem(36);
+  height: toRem(36);
+  border: 1px solid var(--border-primary);
+  border-radius: toRem(10);
+  background: var(--bg-secondary);
+  color: var(--text-gray-500);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    color: var(--brand-500);
+    border-color: var(--brand-300);
+  }
+}

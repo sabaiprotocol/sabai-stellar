@@ -1,0 +1,92 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(5, 28, 51, 0.6);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: toRem(16);
+  animation: fadeIn 0.25s ease both;
+}
+
+.sheet {
+  position: relative;
+  width: min(var(--modal-width), 100%);
+  @include modalMaxHeight;
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  animation: rise 0.3s cubic-bezier(0.21, 1.02, 0.55, 1) both;
+}
+
+.close {
+  position: absolute;
+  top: toRem(12);
+  right: toRem(12);
+  z-index: 2;
+  width: toRem(28);
+  height: toRem(28);
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: toRem(8);
+  background: var(--bg-gray-25);
+  color: var(--text-gray-600);
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background: var(--bg-gray-50);
+  }
+}
+
+/* Exit duration must match EXIT_MS in useModalTransition. */
+.isClosing {
+  animation: fadeOut 0.2s ease both;
+
+  .sheet {
+    animation: sink 0.2s ease both;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(toRem(16)) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sink {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(toRem(12)) scale(0.97);
+  }
+}

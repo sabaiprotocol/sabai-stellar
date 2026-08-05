@@ -1,0 +1,59 @@
+/* icon · title · action, brand outline that inverts on hover. */
+.list {
+  display: grid;
+  gap: toRem(10);
+}
+
+.row {
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: grid;
+  grid-template-columns: toRem(24) 1fr toRem(24);
+  align-items: center;
+  gap: toRem(16);
+  min-height: toRem(60);
+  padding: toRem(10) toRem(16);
+  border-radius: toRem(18);
+  border: 1px solid var(--brand-500);
+  background: none;
+  color: var(--text-primary);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+
+  svg {
+    width: toRem(22);
+    height: toRem(22);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--brand-500);
+      color: #fff;
+
+      .kind {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+}
+
+.body {
+  min-width: 0;
+  display: grid;
+  gap: toRem(2);
+}
+
+.title {
+  font-size: toRem(14);
+  font-weight: 600;
+}
+
+.kind {
+  font-size: toRem(12);
+  color: var(--text-gray-500);
+  transition: color 0.3s;
+}

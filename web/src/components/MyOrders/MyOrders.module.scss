@@ -1,0 +1,108 @@
+/* One card per order: image header → cost row → tiles → actions strip. */
+.item {
+  display: grid;
+  background-color: var(--bg-secondary);
+  border-radius: toRem(16) toRem(16) toRem(24) toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  height: fit-content;
+}
+
+/* Clickable card body — opens the asset overview. */
+.link {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  transition: transform 0.3s;
+  will-change: transform;
+
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translate(0, toRem(-2));
+    }
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 100 / 65;
+  border-radius: toRem(16) toRem(16) 0 0;
+  overflow: hidden;
+}
+
+.orderBadge {
+  position: absolute;
+  left: toRem(10);
+  top: toRem(10);
+  font-size: toRem(11);
+  font-weight: 600;
+  color: #fff;
+  background: rgba(5, 28, 51, 0.55);
+  border-radius: toRem(20);
+  padding: toRem(3) toRem(10);
+  backdrop-filter: blur(4px);
+}
+
+.photoNote {
+  position: absolute;
+  right: toRem(10);
+  top: toRem(10);
+  font-size: toRem(11);
+  color: #fff;
+  background: rgba(5, 28, 51, 0.55);
+  border-radius: toRem(6);
+  padding: toRem(3) toRem(8);
+  backdrop-filter: blur(4px);
+}
+
+.body {
+  padding: toRem(20) toRem(14) toRem(4);
+  display: grid;
+  @include adaptiveValue('gap', 20, 10);
+}
+
+.cost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(10);
+}
+
+.costTitle {
+  color: var(--text-primary);
+  font-weight: 600;
+  @include adaptiveValue('font-size', 20, 16);
+}
+
+.costAmount {
+  font-size: toRem(16);
+  color: var(--text-gray-400, var(--gray-400));
+  white-space: nowrap;
+}
+
+.location {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  margin-top: toRem(-10);
+}
+
+/* Two buttons side by side, collapsing on narrow cards. */
+.actions {
+  padding: toRem(16) toRem(14) toRem(18);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(150), 1fr));
+  @include adaptiveValue('column-gap', 20, 10);
+  @include adaptiveValue('row-gap', 12, 8);
+}
+
+.error {
+  grid-column: 1 / -1;
+  font-size: toRem(13);
+  line-height: 1.5;
+  color: var(--error-500);
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,23 @@
+[package]
+name = "compliance-registry"
+description = "Sabai PoC — shared investor eligibility registry for tokenized assets"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+# "lib" so the other contracts' tests can register a real registry.
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+sabai-access = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
+# So "one registration serves every asset" can deploy two real tokens against
+# one registry instead of asserting the same view call twice.
+share-token = { path = "../share-token" }

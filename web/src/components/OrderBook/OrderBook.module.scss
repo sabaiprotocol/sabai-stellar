@@ -1,0 +1,76 @@
+/* Order-book card wrapping the shared DataTable. */
+.book {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: toRem(24);
+  box-shadow: toRem(8) toRem(8) toRem(34) 0 var(--shadow-primary);
+  @include adaptiveValue('padding', 26, 16);
+  display: grid;
+  gap: toRem(14);
+}
+
+.title {
+  font-size: toRem(16);
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: toRem(10);
+  flex-wrap: wrap;
+}
+
+.live {
+  font-size: toRem(11);
+  font-weight: 500;
+  color: var(--success-500);
+}
+
+.empty {
+  font-size: toRem(13);
+  color: var(--text-gray-500);
+  line-height: 1.55;
+}
+
+/* Row action buttons inside the table's last column. */
+.action {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: toRem(12);
+  font-weight: 600;
+  white-space: nowrap;
+  /* The spinner sits beside the label while a cancellation is in flight. */
+  display: inline-flex;
+  align-items: center;
+  column-gap: toRem(6);
+  padding: toRem(6) toRem(14);
+  border-radius: toRem(8);
+  background: var(--brand-500);
+  color: #fff;
+  transition: opacity 0.3s;
+
+  &:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.actionSecondary {
+  background: var(--bg-gray-25);
+  color: var(--text-gray-600);
+
+  &:hover:not(:disabled) {
+    background: var(--bg-gray-50);
+    opacity: 1;
+  }
+}
+
+.error {
+  font-size: toRem(12);
+  color: var(--error-500);
+  overflow-wrap: anywhere;
+}

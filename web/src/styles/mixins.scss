@@ -1,0 +1,130 @@
+@use 'sass:math';
+@use '@/styles/settings' as *;
+
+// ────────────────────────────────────────
+// FUNCTIONS
+// ────────────────────────────────────────
+
+@function toRem($px, $current: 16) {
+  $result: math.div($px, $current) + rem;
+  @return $result;
+}
+
+@function toEm($px, $current: 16) {
+  $result: math.div($px, $current) + em;
+  @return $result;
+}
+
+// ────────────────────────────────────────
+// LAYOUT
+// ────────────────────────────────────────
+
+// modalMaxHeight — how tall a modal sheet is allowed to grow.
+//
+// dvh, not vh: on mobile `vh` resolves against the LARGE viewport (address bar
+// hidden), so a 96vh sheet is clipped by the browser chrome as soon as the bar
+// is on screen. `dvh` is the viewport that is actually visible right now, and
+// useModalTransition locks body scroll while a modal is open, so the value
+// cannot jitter under the user. `svh` would be safe too but always gives up
+// the address-bar strip, even when it is not there. The plain `vh` line stays
+// as the fallback for engines without dvh.
+//
+// @example:
+//   .modal { @include modalMaxHeight; }        // 96dvh
+//   .sheet { @include modalMaxHeight(80); }    // 80dvh
+@mixin modalMaxHeight($percent: 96) {
+  max-height: #{$percent}vh;
+  max-height: #{$percent}dvh;
+}
+
+// modalBody — the stacked-rows layout most dialog sheets use.
+//
+// @example:
+//   .modal { @include modalBody; }
+@mixin modalBody {
+  padding: toRem(24);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(14);
+
+  @media (max-width: toEm($mobile)) {
+    padding: toRem(16);
+  }
+}
+
+// adaptiveValue — adaptive CSS value via clamp()
+//
+// Generates three media queries:
+//   1. >= $widthFrom  → fixed $startSize
+//   2. $widthTo–$widthFrom → clamp() between $minSize and $startSize
+//   3. <= $widthTo    → fixed $minSize
+//
+// @param  $property   — CSS property (font-size, padding, gap, etc.)
+// @param  $startSize  — max value in px (desktop)
+// @param  $minSize    — min value in px (mobile)
+// @param  $keepSize   — controls edge media queries:
+//                        0 (default) — all three media queries
+//                        1 — middle only (clamp)
+//                        2 — without min media query
+//                        3 — without max media query
+// @param  $widthFrom  — upper viewport bound in px (default: $containerWidth = 1440)
+// @param  $widthTo    — lower viewport bound in px (default: $minWidth = 320)
+//
+// @example:
+//   @include adaptiveValue('font-size', 48, 24);
+//   font-size: clamp(1.5rem, 0.857rem + 2.143vw, 3rem)
+//
+// @example — padding scales down only, stays fixed above desktop:
+//   @include adaptiveValue('padding', 60, 20, 3);
+@mixin adaptiveValue(
+  $property,
+  $startSize,
+  $minSize,
+  $keepSize: 0,
+  $widthFrom: $containerWidth,
+  $widthTo: $minWidth
+) {
+  @if ($startSize==0) {
+    $startSize: 0.000001;
+  }
+  @if ($minSize==0) {
+    $minSize: 0.000001;
+  }
+
+  $addSize: math.div($startSize - $minSize, 16);
+
+  @if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+    $widthFrom: $maxWidth;
+  }
+
+  $widthFromMedia: toEm($widthFrom);
+  $widthToMedia: toEm($widthTo);
+
+  $slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+  $yIntersection: -$widthTo * $slope + $minSize;
+  @if ($yIntersection==0) {
+    $yIntersection: 0.000001;
+  }
+  $flyValue: #{toRem($yIntersection)}' + ' #{$slope * 100}vw;
+
+  $propertyValue: #{'clamp(' toRem($minSize) ',' $flyValue ',' toRem($startSize) ')'};
+
+  @if ($minSize > $startSize) {
+    $propertyValue: #{'clamp(' toRem($startSize) ',' $flyValue ',' toRem($minSize) ')'};
+  }
+
+  @if $keepSize != 1 and $keepSize != 3 {
+    @media (min-width: $widthFromMedia) {
+      #{$property}: toRem($startSize);
+    }
+  }
+
+  @media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+    #{$property}: $propertyValue;
+  }
+  @if $keepSize != 1 and $keepSize != 2 {
+    @media (max-width: $widthToMedia) {
+      #{$property}: toRem($minSize);
+    }
+  }
+}

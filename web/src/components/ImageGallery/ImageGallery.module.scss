@@ -1,0 +1,93 @@
+.gallery {
+  position: absolute;
+  inset: 0;
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0;
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s ease;
+}
+
+.active {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: toRem(34);
+  height: toRem(34);
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(5, 28, 51, 0.45);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background 0.3s,
+    transform 0.3s;
+
+  svg {
+    display: block;
+    width: toRem(16);
+    height: toRem(16);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background: rgba(5, 28, 51, 0.7);
+      transform: translateY(-50%) scale(1.08);
+    }
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.94);
+  }
+}
+
+.prev {
+  left: toRem(10);
+}
+
+.next {
+  right: toRem(10);
+
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.dots {
+  position: absolute;
+  bottom: toRem(10);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: toRem(6);
+}
+
+.dot {
+  width: toRem(8);
+  height: toRem(8);
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.dotActive {
+  background: #fff;
+  transform: scale(1.25);
+}

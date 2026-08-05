@@ -1,0 +1,101 @@
+/* base + gradient + secondary + red */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  column-gap: toRem(6);
+  padding: toRem(2) toRem(12);
+  min-height: toRem(42);
+  width: 100%;
+  cursor: pointer;
+  border: toRem(1) solid transparent;
+  transition:
+    background-color 0.6s,
+    color 0.6s,
+    border 0.6s,
+    opacity 0.3s;
+
+  @media (max-width: toEm($tablet)) {
+    min-height: toRem(36);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* A working button is disabled for a different reason than an unavailable
+     one, and at 0.55 the spinner is barely there. Pointer events come back so
+     the cursor can say so; the click is still blocked by :disabled. */
+  &[aria-busy='true'] {
+    pointer-events: auto;
+    cursor: progress;
+    opacity: 0.8;
+  }
+}
+
+
+.gradient {
+  background: var(--gradient-cta);
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-radius: toRem(6);
+
+  @media (min-width: toEm($mobile)) {
+    font-weight: 700;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
+
+.secondary {
+  border-radius: toRem(8);
+  background-color: var(--bg-brand-100);
+  color: var(--text-brand-700);
+  font-weight: 500;
+
+  :global(.dark) & {
+    color: var(--text-brand-500);
+    background-color: var(--bg-brand-50);
+  }
+
+  @media (min-width: toEm($mobile)) {
+    font-weight: 700;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.red {
+  background-color: var(--error-400);
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-radius: toRem(6);
+
+  @media (min-width: toEm($mobile)) {
+    font-weight: 700;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--error-500);
+    }
+
+    &:active {
+      background-color: var(--error-600);
+    }
+  }
+}

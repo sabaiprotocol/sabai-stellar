@@ -1,0 +1,23 @@
+[package]
+name = "rewards-distributor"
+description = "Sabai PoC — pro-rata XLM reward distribution to share holders"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+# "lib" so asset-sale and asset-exchange tests can register a real distributor
+# and prove they really do settle a buyer, rather than mocking one.
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+sabai-access = { workspace = true }
+
+[dev-dependencies]
+compliance-registry = { path = "../compliance-registry" }
+soroban-sdk = { workspace = true, features = ["testutils"] }
+share-token = { path = "../share-token" }

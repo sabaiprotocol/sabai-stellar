@@ -1,0 +1,34 @@
+{
+  "name": "@sabai/poc-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sabai Stellar PoC dApp — buy a fractional share of a tokenized asset on testnet",
+  "scripts": {
+    "dev": "next dev --port 3030",
+    "build": "next build",
+    "start": "next start --port 3030",
+    "typecheck": "tsc --noEmit",
+    "generate:sprite": "node scripts/generate-sprite.mjs"
+  },
+  "dependencies": {
+    "@sabai/bindings-asset-sale": "*",
+    "@sabai/bindings-exchange": "*",
+    "@sabai/bindings-registry": "*",
+    "@sabai/bindings-rewards": "*",
+    "@sabai/bindings-share-token": "*",
+    "@stellar/freighter-api": "^6.0.1",
+    "@stellar/stellar-sdk": "^16.2.0",
+    "next": "^16.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "sass": "^1.101.0",
+    "svg-sprite": "2.0.4",
+    "svgo": "4.0.2",
+    "typescript": "~6.0.3"
+  }
+}

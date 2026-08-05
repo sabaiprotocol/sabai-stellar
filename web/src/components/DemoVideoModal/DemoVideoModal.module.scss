@@ -1,0 +1,27 @@
+.modal {
+  padding: toRem(20);
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: toRem(6);
+  font-size: toRem(13);
+  line-height: 1.6;
+  color: var(--text-gray-600);
+}
+
+.video {
+  margin-top: toRem(14);
+  display: block;
+  width: 100%;
+  // The capture is 1500x940; holding that ratio stops the sheet resizing as
+  // the file loads.
+  aspect-ratio: 1500 / 940;
+  border-radius: toRem(10);
+  background: var(--bg-gray-25);
+  border: 1px solid var(--border-primary);
+}

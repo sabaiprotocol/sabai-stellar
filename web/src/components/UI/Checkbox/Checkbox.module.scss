@@ -1,0 +1,71 @@
+.checkbox {
+  position: relative;
+}
+
+.input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+
+  &:focus-visible + .label::before {
+    box-shadow: 0 0 toRem(5) var(--gray-300);
+  }
+
+  &:checked + .label::before {
+    border: toRem(1) solid var(--brand-500);
+    background: var(--bg-brand-25)
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="6" height="3" viewBox="0 0 17 12" fill="none"><path d="M1.00049 6L6.00049 11L16.0005 1" stroke="%231b8cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+      no-repeat center center;
+    background-size: contain;
+  }
+}
+
+.label {
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  align-items: flex-start;
+  gap: toRem(12);
+
+  &::before {
+    content: '';
+    flex: 0 0 toRem(22);
+    width: toRem(22);
+    height: toRem(22);
+    border-radius: toRem(6);
+    border: toRem(1) solid var(--gray-300, var(--border-primary));
+    transition:
+      border 0.3s,
+      background-color 0.3s;
+  }
+
+  @media (any-hover: hover) {
+    &:hover::before {
+      border: toRem(1) solid var(--brand-500);
+    }
+  }
+}
+
+.text {
+  line-height: 1.5;
+  text-align: left;
+  font-size: toRem(12);
+  color: var(--text-gray-600);
+
+  button {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: var(--brand-500);
+    font-weight: 600;
+    transition: opacity 0.3s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
