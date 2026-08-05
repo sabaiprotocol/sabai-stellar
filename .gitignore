@@ -1,0 +1,30 @@
+# Claude Code project config (internal, not for the public repo)
+.claude/
+
+# Node
+node_modules/
+*.tsbuildinfo
+
+# Next.js
+web/.next/
+web/out/
+
+# Rust / Soroban
+contracts/target/
+*.wasm
+# Ledger dumps the SDK writes on every `cargo test` run. Regenerated locally,
+# never read by anything, and they bury the diff of an actual change.
+contracts/*/test_snapshots/
+
+# Env & secrets (deployer keys live here — never commit)
+.env
+.env.local
+.env.*.local
+# Throwaway keys of the wallets `npm run seed-demo` creates. Testnet only and
+# worth nothing, but they are still secrets and the rule does not get an
+# exception for keys that happen not to matter.
+deployments/demo-wallets.json
+
+# OS / editors
+.DS_Store
+Thumbs.db
