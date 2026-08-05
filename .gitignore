@@ -10,6 +10,9 @@ web/.next/
 web/out/
 web/next-env.d.ts
 
+# Vercel CLI link — machine-local project id and auth, not a repo setting
+.vercel/
+
 # Rust / Soroban
 contracts/target/
 *.wasm

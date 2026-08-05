@@ -440,6 +440,7 @@ cd web && npx biome check src && npx tsc --noEmit && npm run build
 | [docs/LEGAL-STRUCTURE.md](docs/LEGAL-STRUCTURE.md) | What has to exist off-chain before a share means anything: the structure chosen, the jurisdictions, the exemptions, and the document anchor |
 | [docs/legal/](docs/legal/) | The reference legal pack itself — the ten documents of one deployment, with the entrypoint that enforces each operative clause |
 | [docs/DESIGN-NOTES.md](docs/DESIGN-NOTES.md) | What is deliberately simplified, reviewer FAQ, roadmap to mainnet |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Hosting the dApp: why `web/` cannot be built in isolation, the Vercel settings, the one environment variable |
 
 ## Repository layout
 
@@ -455,7 +456,7 @@ scripts/               deploy, bindings, smoke test, wasm verification (TypeScri
 web/                   Next.js dApp: Freighter, Soroban RPC, no backend
 packages/bindings/     generated typed clients, committed so the app builds without Rust
 deployments/           testnet.json: addresses, wasm hashes, roles, configuration
-docs/                  architecture, fee measurement, KYC, governance, legal structure
+docs/                  architecture, fee measurement, KYC, governance, legal structure, hosting
   legal/                 the reference legal pack; 03-06 are what the ledger anchors
   screenshots/           the six screens the README shows, plus the animated clip
 .github/workflows/     CI: fmt, clippy, tests, wasm build, biome, tsc, bindings, next build
