@@ -348,7 +348,7 @@ is one call rather than sending the investor back through verification.
 | **Compliance module** | The clauses the pack states and the contracts do not yet execute: the 9.99% concentration cap and the member-count limit (OA §4.6), verification expiry, per-jurisdiction eligibility, and subscriptions escrowed until Final Closing (OA §6). Each is a registry claim richer than "allowed: yes" — [sequencing](legal/01-COMPLIANCE-ROADMAP.md) |
 | **Key management** | Done: 2-of-3 admin account plus a separate operator role. Still to do: the signers on different machines and hardware, and a multisig for the KYC provider and the treasury too |
 | **Upgradeability** | Done: `upgrade` behind the multisig. Still to do: a published pending-hash window, with the delay itself under governance |
-| **Security** | Third-party audit before any real value; the Polygon contracts are CertiK-audited and the Soroban ones must clear the same bar |
+| **Security** | The Soroban contracts are unaudited. A third-party audit is required before any real value moves through them |
 | **Rewards** | Done: both markets settle the buyer inside the purchase. Still to do: a transfer hook on the token so a plain wallet-to-wallet movement settles too, non-reverting so the distributor can never freeze the register |
 | **Rewards, separately** | Time-weighting. A round is credited to whoever is settled when it is deposited, so someone who settled a minute earlier is paid the same as someone who held all quarter. Per-round snapshots fix who is credited; weighting by how long they held is a further step and needs checkpointed balances |
 | **Ramps** | SEP-24 and SEP-6 anchors so investors arrive with fiat, not with XLM |

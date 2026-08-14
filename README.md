@@ -178,20 +178,18 @@ is the issuer, so the liabilities of one asset never reach another. Reasoning
 and the road to mainnet: **[docs/legal/](docs/legal/)** and
 **[docs/legal/01-COMPLIANCE-ROADMAP.md](docs/legal/01-COMPLIANCE-ROADMAP.md)**.
 
-## Who is behind this
+## Where the comparison numbers come from
 
-[Sabai Protocol](https://sabaiprotocol.com) already runs this product in
-production on another chain: five years, 23+ industries, 16+ countries, $700M+
-combined capitalization of client projects. Its marketplace
-[Sabai Property](https://sabaiprotocol.com/property) has 20,000+ users and $4M+
-of tokenized real estate, on custom Solidity contracts
-[audited by CertiK](https://sabaiprotocol.com/solution) (Skynet 84.52 A), with
-live cases in Thailand and Cambodia.
+The same flows — eligibility gate, primary sale, buyback, secondary market,
+income distribution — exist as Solidity contracts deployed by
+[Sabai Protocol](https://sabaiprotocol.com) on Polygon. That deployment is what
+the Polygon column of every table in this repository is read from: real mainnet
+transactions on contracts implementing the same product, not a benchmark
+harness and not an estimate.
 
-So the question this repository asks is not whether fractional real-estate
-ownership works. It is what the product looks like rebuilt natively on Stellar,
-and what the move costs and gains, measured against our own live Polygon
-contracts rather than estimated.
+So the question this repository asks is a narrow, technical one: what these
+flows look like rebuilt natively on Stellar, and what the move costs and gains
+per operation, measured on both chains rather than modelled.
 
 ## Why Stellar, in three numbers
 
